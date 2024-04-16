@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.t2 {
+    display: block;
+}
+
+.t2 tr td {
+    display: inline-block;
+    height: 420px;
+    overflow-y: auto;
+}
+
+td:nth-child(odd), th:nth-child(odd) {
+    width: 375px;
+}
+
+td:nth-child(even), th:nth-child(even) {
+    width: 500px;
+}
+
+th, td {
+    font-size: 25px;
+    text-align: center;
+    height: 50px;
+}
+
+td button {
+    font-size: 20px;
+    width: 80%;
+    height: 48px;
+    border-radius: 10px;
+    border-color: transparent;
+    background-color: transparent;
+}
+
+td button:hover {
+    background-color: lightblue;
+    border: 2px solid black;
+}
+
+
+.des {
+    bottom: 0;
+    position: fixed;
+    display: block;
+}
