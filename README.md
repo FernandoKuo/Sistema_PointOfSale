@@ -14,4 +14,4 @@ Objetivo Final: Proyecto Funcional
   - Diagrama Entidad relación
   - Diagrama Caso de uso
   - Diagrama Flujo de datos
-  - ...
+  - Diagrama Secuencia
