@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-06-2024 a las 22:12:49
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.29
+-- Tiempo de generación: 22-04-2024 a las 21:19:33
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -16,6 +16,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
+
+drop database if exists pos;
+create database pos;
+use pos;
 
 --
 -- Base de datos: `pos`
@@ -31,7 +35,7 @@ CREATE TABLE `carta` (
   `id_carta` int(11) NOT NULL,
   `plato` varchar(30) DEFAULT NULL,
   `importe` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `carta`
@@ -62,7 +66,7 @@ INSERT INTO `carta` (`id_carta`, `plato`, `importe`) VALUES
 
 CREATE TABLE `mesa` (
   `id_mesa` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `mesa`
@@ -87,26 +91,8 @@ CREATE TABLE `pedido` (
   `id_pedido` int(11) NOT NULL,
   `id_carta` int(11) DEFAULT NULL,
   `id_mesa` int(11) DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
   `estado` enum('pendiente','concluido') DEFAULT 'pendiente'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuario`
---
-
-CREATE TABLE `usuario` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(50) DEFAULT NULL,
-  `apellido` varchar(50) DEFAULT NULL,
-  `username` varchar(50) DEFAULT NULL,
-  `dni` int(8) DEFAULT NULL,
-  `tel` varchar(15) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `psw` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tablas volcadas
@@ -130,14 +116,7 @@ ALTER TABLE `mesa`
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`id_pedido`),
   ADD KEY `id_carta` (`id_carta`),
-  ADD KEY `id_mesa` (`id_mesa`),
-  ADD KEY `id_usuario` (`id_usuario`);
-
---
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id`);
+  ADD KEY `id_mesa` (`id_mesa`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -150,12 +129,6 @@ ALTER TABLE `pedido`
   MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- Restricciones para tablas volcadas
 --
 
@@ -164,8 +137,7 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `pedido`
   ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_carta`) REFERENCES `carta` (`id_carta`),
-  ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`id_mesa`) REFERENCES `mesa` (`id_mesa`),
-  ADD CONSTRAINT `pedido_ibfk_3` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`);
+  ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`id_mesa`) REFERENCES `mesa` (`id_mesa`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

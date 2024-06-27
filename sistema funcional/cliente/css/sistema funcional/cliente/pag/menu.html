@@ -7,22 +7,13 @@
 <link rel="stylesheet" href="styles2.css">
 <script src="javascript.js"></script>
 </head>
-
-<script>
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const user = urlParams.get('user');
-  const nmesa = urlParams.get('nmesa');
-
-  document.getElementById("nmesa").innerText = `N° Mesa ${nmesa}`;
-</script>
-
 <body><form action="..\..\cocina\uploaddata.php" method="post">
 <header><table><tr>
   <td style="left: 0;position: absolute;"><a href="index.html"><button type="button">CANCELAR</button></a></td>
   <td style="text-align: center;">
     MENÚ
-    <span id="nmesa" style="font-size: 15px;color: white;"></span>
+    <label for="nmesa" style="font-size: 15px;">N° Mesa</label>
+    <input type="text" id="nmesa" name="nmesa" style="color: white;background-color: transparent;border: 0;width: 20px;height: 30px;font-size: 30px;" value="1">
   </td>
   <td style="right: 0;position: absolute;"><input type="submit" value="CONFIRMAR"></td>
 </tr></table></header>
@@ -92,7 +83,7 @@
       <input type="number" name="p[22]" value="0" placeholder="0" min="0" max="50">
     </div>
     <div class="overall-view" id="b-3" style="display: none;" onkeydown="return false">
-      <h2>Sushi variado</h2>
+      <h2>CSushi variadoOCA</h2>
       <p>Selección de sushi con variedad de pescado fresco y arroz al vapor</p>
       <input type="number" name="p[23]" value="0" placeholder="0" min="0" max="50">
     </div>

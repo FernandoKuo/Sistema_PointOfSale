@@ -1,0 +1,138 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: aliceblue;
+    overflow: hidden;
+}
+header table{
+    width: 100%;
+    background-color: black;
+    position: fixed;
+}
+header table tr td {
+    padding: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+header table tr td button,
+header table tr td input[type=submit] {
+    font-size: 30px;
+    font-weight: bold;
+}
+nav {
+    right: 20px;
+    position: fixed;
+    margin-top: 80px;
+}
+nav ul li {
+    display: inline;
+}
+nav ul li button {
+    width: 120px;
+    height: 30px;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+div.scroll-container {
+    overflow-x: scroll;
+    white-space: nowrap;
+    margin-right: 20px;
+    margin-bottom: 30px;
+}
+section {
+    margin-left: 30px;
+}
+section * {
+    margin-right: 15px;
+}
+.scroll-container button {
+    width: 150px;
+    height: 150px;
+    background-size: 100% 100%;
+}
+
+.desc-container {
+    background-color: #f9f9f9;
+    max-width: 700px;
+    max-height: 400px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+.overall-view {
+    max-width: 640px;
+}
+.overall-view p {
+    display: block;
+    word-break: break-all;
+    white-space: normal;
+    max-height: 90px;
+    overflow: hidden;
+}
+input[type=number]
+{
+  width: 60px;
+  height: 50px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.coquita{
+    background-image: url("images/bebidas/Coca_Cola.jpg");
+}
+.juguito{
+    background-image: url("images/bebidas/Jugo_de_naranja_natural.jpg");
+} 
+.vino{
+    background-image: url("images/bebidas/Vino_tinto_reserva.jpg");
+}  
+.agua{
+    background-image: url("images/bebidas/Agua_mineral.jpg");
+}  
+.tarta{
+    background-image: url("images/postres/Tarta_de_chocolate.jpg");   
+}
+.helado{
+    background-image: url("images/postres/helado_de_vainilla.jpg");
+}
+.tiramisu{
+    background-image: url("images/postres/tiramisu.jpg");
+}
+.mousse{
+    background-image: url("images/postres/Mousse_de_limón.jpg");
+}
+.pastel{
+    background-image: url("images/postres/Pastel_de_manzana.jpg");
+} 
+.cerveza{
+    background-image: url("images/bebidas/Cerveza_artesanal_IPA.jpg");
+}   
+.fideos{
+    background-image: url("images/platos/spagueti.jpg");
+}
+.hamburguesa{
+    background-image: url("images/platos/hamburguesa.jpg");
+}
+.pollo{
+    background-image: url("images/platos/Pollo_a_la_parrilla.jpg");
+}
+.sushi{
+    background-image: url("images/platos/sushi_variado.jpg");
+}
+.parrilla{
+    background-image: url("images/platos/parrillada_mixta.jpg");
+}
+/*.bebidas {
+    background-color: #f9f9f9;
+}
+.postres {
+    background-color: #e9e9e9;
+}
+.platos {
+    background-color: #f5f5f5;
+}*/
