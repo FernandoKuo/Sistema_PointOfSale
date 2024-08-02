@@ -13,12 +13,12 @@
             <script>
                 function cambio() {
                     let nmesa = document.getElementById("nmesa").value;
-                    let elh = `../menu.html?user=NULL&nmesa=${nmesa}`;
+                    let elh = `../menu.html?user=null&nmesa=${nmesa}`;
                     document.getElementById("a").href = elh;
                 }
             </script>
             <a href="inicio.html"><button>Iniciar Sesión</button></a>
-            nmesa:<input id="nmesa" type="number" onchange="cambio()" min="1">
+            <span style="color: white;">nmesa:</span><input id="nmesa" type="number" onchange="cambio()" min="1">
             <a id="a" href="#"><button>Continuar sin usuario</button></a>
         </div>
     </div>

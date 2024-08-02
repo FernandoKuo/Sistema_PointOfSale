@@ -13,18 +13,29 @@
   
   // data upload
   $nmesa = (int)$_POST["nmesa"];
+  $user = $_POST["user"];
   $pedido = $_POST["p"];
 
-  $pre_sql = "INSERT INTO `pedido` (`fecha_hora1`, `id_carta`, `id_mesa`) VALUES (CURRENT_TIMESTAMP, ";
+  //get user id
+  if ($user == "null") {
+    $user = 1;
+  } else {
+    $a = $conn->query("select id_usuario from usuario where username = '{$user}';");
+    $user = (int)$a;
+  }
+
+  //main
+  $tiempo_actual = $conn->query("select CURRENT_TIMESTAMP;")->fetch_assoc()["CURRENT_TIMESTAMP"];
+  $pre_sql = "INSERT INTO `pedido` (`fecha_hora1`, `id_carta`, `id_mesa`, `id_usuario`) VALUES ('{$tiempo_actual}', ";
   $pedkeys = array_keys($pedido);
   $pedkeys_size = sizeof($pedkeys);
 
   for ($i =  0;$i < $pedkeys_size;$i++) {
     if ($pedido[$pedkeys[$i]] != 0) {
-      $pos_sql = "{$pedkeys[$i]}, {$nmesa});";
+      $pos_sql = "{$pedkeys[$i]}, {$nmesa}, {$user});";
       $sql = $pre_sql . $pos_sql;
       for ($j = 0;$j < $pedido[$pedkeys[$i]];$j++) {
-        mysqli_query($conn, $sql);
+        $conn->query($sql);
       }
     }
   }
@@ -40,7 +51,8 @@
   
   sleep(1);
   mysqli_close($conn);
-  header("Location:../cliente/pag/menu.html");
+  //header("Location:../cliente/pag/accounts/inicio.html");
+  header("Location:../cliente/pag/accounts/principal.html");
 ?>
 
 <!--hacer un html para mostrar el pedido del usuario / esperar unos segundos antes de volver-->

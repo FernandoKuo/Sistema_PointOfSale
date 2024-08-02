@@ -21,18 +21,19 @@ $email = $_POST["email"];
 $password = $_POST["password"];
 
 // check if repeated username
-$sql = "select username from usuario where username = {$username}";
+$sql = "select id_usuario from usuario where username = {$username};";
 $result = $conn->query($sql);
-if ($result->num_rows > 0){
-    echo '<script>alert("Nombre de usuario ya existe")</script>';
-    sleep(3);
-    header("Location:registro.html");
+sleep(1);
+if ($result->num_rows === 0){
+  //main
+  $sql = "insert into `usuario` (`nombre`, `apellido`, `username`, `dni`, `tel`, `email`, `psw`) values ( '{$nombre}', '{$apellido}', '{$username}', {$dni}, '{$tel}', '{$email}', '{$password}' );";
+
+  mysqli_query($conn, $sql);
+
+  mysqli_close($conn);
+  header("Location:inicio.html");
+} else {
+  mysqli_close($conn);
+  header("Location:registro.html");
 }
-
-//main
-$sql = "insert into usuario (nombre, apellido, username, dni, tel, email, psw) values ( {$nombre}, {$apellido}, {$username}, {$dni}, {$tel}, {$email}, {$password} )";
-
-mysqli_query($conn, $sql);
-
-header("Location:inicio.html")
 ?>

@@ -81,6 +81,9 @@ input[type=number]
   text-align: center;
   font-size: 30px;
 }
+input[type=number]::-webkit-inner-spin-button {
+    height: 50px;
+}
 
 .coquita{
     background-image: url("images/bebidas/Coca_Cola.jpg");

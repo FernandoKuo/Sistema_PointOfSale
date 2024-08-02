@@ -16,13 +16,14 @@ $username = $_POST["username"];
 $psw = $_POST["psw"];
 $nmesa = $_POST["nmesa"];
 
-$sql = "select username from usuario where username = {$username} and psw = {$psw}";
+$sql = "select username from usuario where username = '{$username}' and psw = '{$psw}';";
 $result = $conn->query($sql);
-if ($result->num_rows == 0){
-    echo '<script>alert("Nombre de usuario o contraseña incorrecta")</script>';
-    sleep(3);
-    header("Location:inicio.html");
+mysqli_close($conn);
+sleep(1);
+if ($result->num_rows === 1){
+  header("Location:../menu.html?user={$username}&nmesa={$nmesa}");
+} else {
+  header("Location:inicio.html");
 }
 
-header("Location:../menu.html?user={$username}&nmesa={$nmesa}")
 ?>

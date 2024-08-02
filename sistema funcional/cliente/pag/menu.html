@@ -8,20 +8,12 @@
 <script src="javascript.js"></script>
 </head>
 
-<script>
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const user = urlParams.get('user');
-  const nmesa = urlParams.get('nmesa');
-
-  document.getElementById("nmesa").innerText = `N° Mesa ${nmesa}`;
-</script>
-
 <body><form action="..\..\cocina\uploaddata.php" method="post">
 <header><table><tr>
   <td style="left: 0;position: absolute;"><a href="index.html"><button type="button">CANCELAR</button></a></td>
   <td style="text-align: center;">
-    MENÚ
+    <span id="user" style="font-size: 15px;color: white;"></span>
+    <span style="color: red; font-size: 30px">MENÚ</span>
     <span id="nmesa" style="font-size: 15px;color: white;"></span>
   </td>
   <td style="right: 0;position: absolute;"><input type="submit" value="CONFIRMAR"></td>
@@ -32,6 +24,19 @@
   <li><button type="button" onclick="to_postres()">POSTRES</button></li>
 </ul></nav>
 <br><br><br><br>
+
+<input type="hidden" id="postnmesa" name="nmesa"> <input type="hidden" id="postuser" name="user">
+<script>
+  var queryString = window.location.search;
+  var urlParams = new URLSearchParams(queryString);
+  var user = urlParams.get('user');
+  var nmesa = urlParams.get('nmesa');
+
+  document.getElementById('user').innerHTML = `Usuario "${user}"`;
+  document.getElementById('nmesa').innerHTML = `N° Mesa "${nmesa}"`;
+  document.getElementById('postuser').value = user;
+  document.getElementById('postnmesa').value = nmesa;
+</script>
 
 <section id="bebidas" class="bebidas" style="display: block;">
   <h1>Bebidas</h1>

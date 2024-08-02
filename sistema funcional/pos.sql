@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-06-2024 a las 22:12:49
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.29
+-- Tiempo de generación: 01-07-2024 a las 20:26:45
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `carta` (
   `id_carta` int(11) NOT NULL,
   `plato` varchar(30) DEFAULT NULL,
   `importe` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `carta`
@@ -62,7 +62,7 @@ INSERT INTO `carta` (`id_carta`, `plato`, `importe`) VALUES
 
 CREATE TABLE `mesa` (
   `id_mesa` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `mesa`
@@ -89,7 +89,22 @@ CREATE TABLE `pedido` (
   `id_mesa` int(11) DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL,
   `estado` enum('pendiente','concluido') DEFAULT 'pendiente'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `pedido`
+--
+
+INSERT INTO `pedido` (`fecha_hora1`, `fecha_hora2`, `id_pedido`, `id_carta`, `id_mesa`, `id_usuario`, `estado`) VALUES
+('2024-07-01 14:39:55', '2024-07-01 14:43:28', 3, 11, 1, 1, 'concluido'),
+('2024-07-01 14:43:20', '2024-07-01 14:43:28', 6, 11, 1, 1, 'concluido'),
+('2024-07-01 14:45:20', '2024-07-01 14:45:49', 7, 11, 1, 1, 'concluido'),
+('2024-07-01 14:45:46', '2024-07-01 14:45:49', 8, 11, 1, 1, 'concluido'),
+('2024-07-01 14:47:01', '2024-07-01 14:47:10', 9, 11, 1, 1, 'concluido'),
+('2024-07-01 14:47:08', '2024-07-01 14:47:10', 10, 11, 1, 1, 'concluido'),
+('2024-07-01 14:48:13', '2024-07-01 14:52:39', 11, 11, 1, 1, 'concluido'),
+('2024-07-01 14:48:21', '2024-07-01 14:52:39', 12, 11, 1, 1, 'concluido'),
+('2024-07-01 14:58:05', '2024-07-01 14:59:58', 13, 11, 1, 1, 'concluido');
 
 -- --------------------------------------------------------
 
@@ -98,7 +113,7 @@ CREATE TABLE `pedido` (
 --
 
 CREATE TABLE `usuario` (
-  `id` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   `nombre` varchar(50) DEFAULT NULL,
   `apellido` varchar(50) DEFAULT NULL,
   `username` varchar(50) DEFAULT NULL,
@@ -106,7 +121,14 @@ CREATE TABLE `usuario` (
   `tel` varchar(15) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `psw` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `username`, `dni`, `tel`, `email`, `psw`) VALUES
+(1, '0', '0', '0', 0, '0', '0', '0');
 
 --
 -- Índices para tablas volcadas
@@ -137,7 +159,7 @@ ALTER TABLE `pedido`
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -147,13 +169,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -165,7 +187,7 @@ ALTER TABLE `usuario`
 ALTER TABLE `pedido`
   ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_carta`) REFERENCES `carta` (`id_carta`),
   ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`id_mesa`) REFERENCES `mesa` (`id_mesa`),
-  ADD CONSTRAINT `pedido_ibfk_3` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`);
+  ADD CONSTRAINT `pedido_ibfk_3` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
