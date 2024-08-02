@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menú</title>
+<link rel="stylesheet" href="styles2.css">
+<script src="javascript.js"></script>
+</head>
+<body><form action="..\..\cocina\uploaddata.php" method="post">
+<header><table><tr>
+  <td style="left: 0;position: absolute;"><a href="index.html"><button type="button">CANCELAR</button></a></td>
+  <td style="text-align: center;">
+    MENÚ
+    <label for="nmesa" style="font-size: 15px;">N° Mesa</label>
+    <input type="text" id="nmesa" name="nmesa" style="color: white;background-color: transparent;border: 0;width: 20px;height: 30px;font-size: 30px;" value="1">
+  </td>
+  <td style="right: 0;position: absolute;"><input type="submit" value="CONFIRMAR"></td>
+</tr></table></header>
+<nav><ul>
+  <li><button type="button" onclick="to_bebidas()">BEBIDAS</button></li>
+  <li><button type="button" onclick="to_platos()">PLATOS</button></li>
+  <li><button type="button" onclick="to_postres()">POSTRES</button></li>
+</ul></nav>
+<br><br><br><br>
+
+<section id="bebidas" class="bebidas" style="display: block;">
+  <h1>Bebidas</h1>
+  <div class="scroll-container">
+    <button type="button" class="coquita" onclick="mostrar('a-1')"></button>
+    <button type="button" class="juguito" onclick="mostrar('a-2')"></button>
+    <button type="button" class="vino" onclick="mostrar('a-3')"></button>
+    <button type="button" class="agua" onclick="mostrar('a-4')"></button>
+    <button type="button" class="cerveza" onclick="mostrar('a-5')"></button>
+  </div>
+  <div class="desc-container">
+    <div class="overall-view" id="a-1" style="display: none;" onkeydown="return false">
+      <h2>Coca-Cola</h2>
+      <p>Refresco de cola carbonatado</p>
+      <input type="number" name="p[11]" value="0" placeholder="0" min="0" max="50">
+    </div>
+    <div class="overall-view" id="a-2" style="display: none;" onkeydown="return false">
+      <h2>Jugo de naranja natural</h2>
+      <p>Jugo de naranja recién exprimido</p>
+      <input type="number" name="p[12]" value="0" placeholder="0" min="0" max="50">
+    </div>
+    <div class="overall-view" id="a-3" style="display: none;" onkeydown="return false">
+      <h2>Vino tinto reserva</h2>
+      <p>Vino tinto reserva de la región, añejado en barricas de roble</p>
+      <input type="number" name="p[13]" value="0" placeholder="0" min="0" max="50">
+    </div>
+    <div class="overall-view" id="a-4" style="display: none;" onkeydown="return false">
+      <h2>Agua mineral</h2>
+      <p>Agua mineral natural embotellada</p>
+      <input type="number" name="p[14]" value="0" placeholder="0" min="0" max="50">
+    </div>
+    <div class="overall-view" id="a-5" style="display: none;" onkeydown="return false">
+      <h2>Cerveza artesanal IPA</h2>
+      <p>Cerveza india pale ale elaborada con lúpulo americano</p>
+      <input type="number" name="p[15]" value="0" placeholder="0" min="0" max="50">
+    </div>
+  </div>
+</section>
+
+<section id="platos" class="platos" style="display: none;">
+  <h1>Platos</h1>
+  <div class="scroll-container">
+    <button type="button" class="pollo" onclick="mostrar('b-1')"></button>
+    <button type="button" class="fideos" onclick="mostrar('b-2')"></button>
+    <button type="button" class="sushi" onclick="mostrar('b-3')"></button>
+    <button type="button" class="hamburguesa" onclick="mostrar('b-4')"></button>
+    <button type="button" class="parrilla" onclick="mostrar('b-5')"></button>
+  </div>
+  <div class="desc-container">
+    <div class="overall-view" id="b-1" style="display: none;" onkeydown="return false">
+      <h2>Pollo a la parrilla</h2>
+      <p>Pollo asado con hierbas frescas y acompañado de papas fritas</p>
+      <input type="number" name="p[21]" value="0" placeholder="0" min="0" max="50">
+    </div>
+    <div class="overall-view" id="b-2" style="display: none;" onkeydown="return false">
+      <h2>Espaguetis a la bolognesa</h2>
+      <p>Espaguetis con salsa boloñesa casera y queso parmesano </p>
+      <input type="number" name="p[22]" value="0" placeholder="0" min="0" max="50">
+    </div>
+    <div class="overall-view" id="b-3" style="display: none;" onkeydown="return false">
+      <h2>CSushi variadoOCA</h2>
+      <p>Selección de sushi con variedad de pescado fresco y arroz al vapor</p>
+      <input type="number" name="p[23]" value="0" placeholder="0" min="0" max="50">
+    </div>
+    <div class="overall-view" id="b-4" style="display: none;" onkeydown="return false">
+      <h2>Hamburguesa clásica</h2>
+      <p>Hamburguesa de carne de res con queso, lechuga, tomate y salsa especial</p>
+      <input type="number" name="p[24]" value="0" placeholder="0" min="0" max="50">
+    </div>
+    <div class="overall-view" id="b-5" style="display: none;" onkeydown="return false">
+      <h2>Parrillada mixta</h2>
+      <p>Selección de carnes a la parrilla con vegetales asados</p>
+      <input type="number" name="p[25]" value="0" placeholder="0" min="0" max="50">
+    </div>
+  </div>
+</section>
+
+<section id="postres" class="postres" style="display: none;">
+  <h1>Postres</h1>
+  <div class="scroll-container">
+    <button type="button" class="tarta" onclick="mostrar('c-1')"></button>
+    <button type="button" class="helado" onclick="mostrar('c-2')"></button>
+    <button type="button" class="tiramisu" onclick="mostrar('c-3')"></button>
+    <button type="button" class="pastel" onclick="mostrar('c-4')"></button>
+    <button type="button" class="mousse" onclick="mostrar('c-5')"></button>
+  </div>
+  <div class="desc-container">
+    <div class="overall-view" id="c-1" style="display: none;" onkeydown="return false">
+      <h2>Tarta de chocolate</h2>
+      <p>Tarta de chocolate negro con crema batida y frambuesas frescas</p>
+      <input type="number" name="p[31]" value="0" placeholder="0" min="0" max="50">
+    </div>
+    <div class="overall-view" id="c-2" style="display: none;" onkeydown="return false">
+      <h2>Helado de vainilla</h2>
+      <p>Helado cremoso de vainilla con sirope de caramelo</p>
+      <input type="number" name="p[32]" value="0" placeholder="0" min="0" max="50">
+    </div>
+    <div class="overall-view" id="c-3" style="display: none;" onkeydown="return false">
+      <h2>Tiramisú</h2>
+      <p>Postre italiano hecho con bizcochos de soletilla, café y crema de mascarpone</p>
+      <input type="number" name="p[33]" value="0" placeholder="0" min="0" max="50">
+    </div>
+    <div class="overall-view" id="c-4" style="display: none;" onkeydown="return false">
+      <h2>Pastel de manzana</h2>
+      <p>Pastel de manzana casero con canela y crujiente de nueces</p>
+      <input type="number" name="p[34]" value="0" placeholder="0" min="0" max="50">
+    </div>
+    <div class="overall-view" id="c-5" style="display: none;" onkeydown="return false">
+      <h2>Mousse de limón</h2>
+      <p>Mousse refrescante de limón con ralladura de lima</p>
+      <input type="number" name="p[35]" value="0" placeholder="0" min="0" max="50">
+    </div>
+  </div>
+</section>
+</form></body>
+</html>

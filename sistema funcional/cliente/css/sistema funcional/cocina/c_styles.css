@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: aquamarine;
+}
+table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+    border-collapse: collapse;
+    border-style: hidden;
+    border-radius: 15px;
+    box-shadow: 0 0 0 5px black;
+    background-color: lightgray;
+}
+table tr td {
+    padding: 15px;
+}
+
+table tr td:nth-child(1), 
+table tr td:nth-child(2), 
+table tr td:nth-child(3), 
+table tr td:nth-child(4) {
+    vertical-align: top;
+}
+table tr td div.card {
+    font-size: 20px;
+    padding: 5px;
+}
+table tr td:nth-child(1) {
+    width: 30%;
+}
+table tr td:nth-child(2) {
+    width: 30%;
+}
+table tr td:nth-child(3) {
+    width: 30%;
+}
+table tr td:nth-child(4) {
+    width: 10%;
+    position: relative;
+}
+table tr td button {
+    background-color: greenyellow;
+    width: 100px;
+    height: 30px;
+    border: 1px white solid;
+    border-radius: 5px;
+}

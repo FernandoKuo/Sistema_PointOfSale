@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página</title>
+    <link rel="stylesheet" href="principal.css">
+</head>
+<body>
+    <div class="container">
+        <img class="logo" src="kansas.png" alt="Logo">
+        <div class="buttons">
+            <script>
+                function cambio() {
+                    let nmesa = document.getElementById("nmesa").value;
+                    let elh = `../menu.html?user=null&nmesa=${nmesa}`;
+                    document.getElementById("a").href = elh;
+                }
+            </script>
+            <a href="inicio.html"><button>Iniciar Sesión</button></a>
+            <span style="color: white;">nmesa:</span><input id="nmesa" type="number" onchange="cambio()" min="1">
+            <a id="a" href="#"><button>Continuar sin usuario</button></a>
+        </div>
+    </div>
+</body>
+</html>
