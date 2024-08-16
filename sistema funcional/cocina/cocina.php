@@ -51,23 +51,53 @@
       }unset($pid, $pcant);
     }}unset($nmesa, $ps);
   }
-
   */
+
+  $p = [];
+  $select = $conn->query("select * from pedido where estado = 'pendiente' order by fecha_hora1, id_mesa, id_carta;");
+  while ($row = $select->fetch_assoc()) {
+    $key = $row["fecha_hora1"]." ".$row["id_mesa"];
+    if ( !isset($p[$key]) ) $p[$key] = [];
+    $p[$key][] = $row["id_carta"];
+  }
+
+  $b = isset($_POST["b"]) ? $_POST["b"][0] : "";
+  if (isset($p[$b])) {
+    $tiempo_actual = $conn->query("select CURRENT_TIMESTAMP;")->fetch_assoc()["CURRENT_TIMESTAMP"];
+    for ($i = 0; $i < count($p[$b]); $i++) {
+      $explosion = explode(" ", $b);
+      $idcarta = $p[$b][$i];
+      $idmesa = $explosion[2];
+      $fh1 = $explosion[0]." ".$explosion[1];
+      
+      $conn->query("UPDATE pedido set fecha_hora2 = '{$tiempo_actual}', estado = 'concluido' where id_carta = '{$idcarta}' and estado = 'pendiente' and id_mesa = '{$idmesa}' and fecha_hora1 = '{$fh1}';");
+    }
+    unset($p[$b]);
+  }
 ?>
 
 <body>
 
-<?php
-  $p = $conn->query("select * from pedido where estado = 'pendiente' order by fecha_hora1, id_mesa, id_pedido;")->fetch_assoc();
-  if (!empty($p)) {
-    $keys = $p["fecha_hora1"] . ' ' . $p["id_mesa"];
-    echo $keys;
-  }
-
-  for ($row = $p) {
-
-  }
-?>
+<?php foreach($p as $key => $ps) { $count = 0; $newps = array_count_values($ps);?>
+  <div style="text-align:center;margin-top:50px;"><table><tr>
+  <?php for ($i = 1; $i <= 3; $i++) {?>
+    <td>
+      <?php foreach ($newps as $idcarta => $cant) {
+        if ( str_split((string)$idcarta)[0] != (string)$i) {continue;}
+        $r = $conn->query("select plato from carta where id_carta = '{$idcarta}';");
+        $r = $r->fetch_assoc()["plato"];?>
+        <div class="card"> <?php echo "{$r} x{$cant}";?> </div>
+      <?php }unset($idcarta, $cant);?>
+    </td>
+  <?php }?>
+  <td>
+    <?php $separate = explode(" ", $key); echo nl2br ("{$separate[1]}\nN° mesa: {$separate[2]}");?>
+    <form action="" method="post">
+      <button name="b[]" value="<?php echo $key;?>">CONCLUIR</button>
+    </form>
+  </td>
+  </tr></table></div>
+<?php }unset($key, $ps);?>
 
 <?php /* foreach ($p as $nmesa => $ps) {?>
   <div style="text-align:center;margin-top:50px;"><table><tr>

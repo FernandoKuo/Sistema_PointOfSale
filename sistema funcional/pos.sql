@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-07-2024 a las 20:26:45
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Tiempo de generación: 16-08-2024 a las 22:08:12
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `carta` (
   `id_carta` int(11) NOT NULL,
   `plato` varchar(30) DEFAULT NULL,
   `importe` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `carta`
@@ -62,7 +62,7 @@ INSERT INTO `carta` (`id_carta`, `plato`, `importe`) VALUES
 
 CREATE TABLE `mesa` (
   `id_mesa` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `mesa`
@@ -73,7 +73,12 @@ INSERT INTO `mesa` (`id_mesa`) VALUES
 (2),
 (3),
 (4),
-(5);
+(5),
+(6),
+(7),
+(8),
+(9),
+(10);
 
 -- --------------------------------------------------------
 
@@ -89,22 +94,7 @@ CREATE TABLE `pedido` (
   `id_mesa` int(11) DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL,
   `estado` enum('pendiente','concluido') DEFAULT 'pendiente'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `pedido`
---
-
-INSERT INTO `pedido` (`fecha_hora1`, `fecha_hora2`, `id_pedido`, `id_carta`, `id_mesa`, `id_usuario`, `estado`) VALUES
-('2024-07-01 14:39:55', '2024-07-01 14:43:28', 3, 11, 1, 1, 'concluido'),
-('2024-07-01 14:43:20', '2024-07-01 14:43:28', 6, 11, 1, 1, 'concluido'),
-('2024-07-01 14:45:20', '2024-07-01 14:45:49', 7, 11, 1, 1, 'concluido'),
-('2024-07-01 14:45:46', '2024-07-01 14:45:49', 8, 11, 1, 1, 'concluido'),
-('2024-07-01 14:47:01', '2024-07-01 14:47:10', 9, 11, 1, 1, 'concluido'),
-('2024-07-01 14:47:08', '2024-07-01 14:47:10', 10, 11, 1, 1, 'concluido'),
-('2024-07-01 14:48:13', '2024-07-01 14:52:39', 11, 11, 1, 1, 'concluido'),
-('2024-07-01 14:48:21', '2024-07-01 14:52:39', 12, 11, 1, 1, 'concluido'),
-('2024-07-01 14:58:05', '2024-07-01 14:59:58', 13, 11, 1, 1, 'concluido');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -121,7 +111,7 @@ CREATE TABLE `usuario` (
   `tel` varchar(15) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `psw` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -169,7 +159,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
