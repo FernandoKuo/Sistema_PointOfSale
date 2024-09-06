@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-08-2024 a las 22:08:12
+-- Tiempo de generación: 06-09-2024 a las 22:41:02
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -83,6 +83,27 @@ INSERT INTO `mesa` (`id_mesa`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pago`
+--
+
+CREATE TABLE `pago` (
+  `id_pago` int(11) NOT NULL,
+  `id_mesa` int(11) DEFAULT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `estado` enum('pendiente','concluido') DEFAULT 'pendiente'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `pago`
+--
+
+INSERT INTO `pago` (`id_pago`, `id_mesa`, `id_usuario`, `estado`) VALUES
+(4, 1, 1, 'pendiente'),
+(5, 2, 1, 'pendiente');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `pedido`
 --
 
@@ -93,8 +114,18 @@ CREATE TABLE `pedido` (
   `id_carta` int(11) DEFAULT NULL,
   `id_mesa` int(11) DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL,
-  `estado` enum('pendiente','concluido') DEFAULT 'pendiente'
+  `estado` enum('pendiente','concluido') DEFAULT 'pendiente',
+  `id_pago` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `pedido`
+--
+
+INSERT INTO `pedido` (`fecha_hora1`, `fecha_hora2`, `id_pedido`, `id_carta`, `id_mesa`, `id_usuario`, `estado`, `id_pago`) VALUES
+('2024-09-06 17:36:50', '2024-09-06 17:39:00', 3, 11, 1, 1, 'concluido', 4),
+('2024-09-06 17:38:31', '2024-09-06 17:39:00', 4, 12, 2, 1, 'concluido', 5),
+('2024-09-06 17:38:50', '2024-09-06 17:39:01', 5, 11, 1, 1, 'concluido', 4);
 
 -- --------------------------------------------------------
 
@@ -137,13 +168,20 @@ ALTER TABLE `mesa`
   ADD PRIMARY KEY (`id_mesa`);
 
 --
+-- Indices de la tabla `pago`
+--
+ALTER TABLE `pago`
+  ADD PRIMARY KEY (`id_pago`);
+
+--
 -- Indices de la tabla `pedido`
 --
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`id_pedido`),
   ADD KEY `id_carta` (`id_carta`),
   ADD KEY `id_mesa` (`id_mesa`),
-  ADD KEY `id_usuario` (`id_usuario`);
+  ADD KEY `id_usuario` (`id_usuario`),
+  ADD KEY `pedido_ibfk_4` (`id_pago`);
 
 --
 -- Indices de la tabla `usuario`
@@ -156,16 +194,22 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `pago`
+--
+ALTER TABLE `pago`
+  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+--
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Restricciones para tablas volcadas
@@ -177,7 +221,8 @@ ALTER TABLE `usuario`
 ALTER TABLE `pedido`
   ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_carta`) REFERENCES `carta` (`id_carta`),
   ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`id_mesa`) REFERENCES `mesa` (`id_mesa`),
-  ADD CONSTRAINT `pedido_ibfk_3` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
+  ADD CONSTRAINT `pedido_ibfk_3` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
+  ADD CONSTRAINT `pedido_ibfk_4` FOREIGN KEY (`id_pago`) REFERENCES `pago` (`id_pago`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

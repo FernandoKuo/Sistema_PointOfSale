@@ -24,9 +24,23 @@
     $user = (int)$a;
   }
 
+  //pago
+  $pepe = $conn->query("select id_pago from pago where id_mesa = {$nmesa} and estado = 'pendiente';")->fetch_assoc();
+
+  if (is_null($pepe)) {
+    $max = $conn->query("select max(id_pago) from pago;")->fetch_assoc()['max(id_pago)'];
+    if (is_null($max)) {
+      $conn->query("insert into `pago` (`id_pago`, `id_mesa`, `id_usuario`) values (1, {$nmesa}, {$user});");
+    } else {
+      $conn->query("insert into `pago` (`id_mesa`, `id_usuario`) values ({$nmesa}, {$user});");
+    }
+    $pepe = $conn->query("select id_pago from pago where id_mesa = {$nmesa} and estado = 'pendiente';")->fetch_assoc();
+  }
+  $pepe = $pepe['id_pago'];
+
   //main
   $tiempo_actual = $conn->query("select CURRENT_TIMESTAMP;")->fetch_assoc()["CURRENT_TIMESTAMP"];
-  $pre_sql = "INSERT INTO `pedido` (`fecha_hora1`, `id_carta`, `id_mesa`, `id_usuario`) VALUES ('{$tiempo_actual}', ";
+  $pre_sql = "INSERT INTO `pedido` (`fecha_hora1`, `id_pago`, `id_carta`, `id_mesa`, `id_usuario`) VALUES ('{$tiempo_actual}', {$pepe}, ";
   $pedkeys = array_keys($pedido);
   $pedkeys_size = sizeof($pedkeys);
 
