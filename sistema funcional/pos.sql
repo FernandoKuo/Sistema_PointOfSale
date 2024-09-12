@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-09-2024 a las 22:41:02
+-- Tiempo de generación: 12-09-2024 a las 21:38:48
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -93,14 +93,6 @@ CREATE TABLE `pago` (
   `estado` enum('pendiente','concluido') DEFAULT 'pendiente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `pago`
---
-
-INSERT INTO `pago` (`id_pago`, `id_mesa`, `id_usuario`, `estado`) VALUES
-(4, 1, 1, 'pendiente'),
-(5, 2, 1, 'pendiente');
-
 -- --------------------------------------------------------
 
 --
@@ -117,15 +109,6 @@ CREATE TABLE `pedido` (
   `estado` enum('pendiente','concluido') DEFAULT 'pendiente',
   `id_pago` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `pedido`
---
-
-INSERT INTO `pedido` (`fecha_hora1`, `fecha_hora2`, `id_pedido`, `id_carta`, `id_mesa`, `id_usuario`, `estado`, `id_pago`) VALUES
-('2024-09-06 17:36:50', '2024-09-06 17:39:00', 3, 11, 1, 1, 'concluido', 4),
-('2024-09-06 17:38:31', '2024-09-06 17:39:00', 4, 12, 2, 1, 'concluido', 5),
-('2024-09-06 17:38:50', '2024-09-06 17:39:01', 5, 11, 1, 1, 'concluido', 4);
 
 -- --------------------------------------------------------
 
